@@ -5,10 +5,6 @@ import {v4 as uuidv4} from 'uuid';
 
 export const AuthRouter = Router({})
 
-export type AuthPostType = {
-    token: string
-}
-
 AuthRouter.post("/me", async (req, res) => {
     try {
         const {token} = req.headers
@@ -16,7 +12,7 @@ AuthRouter.post("/me", async (req, res) => {
         if (token) {
             const matchUser = await User.findOne({token: token})
             if (matchUser) {
-                return res.status(200).send()
+                return res.status(200).send(matchUser)
             }
             else return res.status(401).send()
         }

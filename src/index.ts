@@ -4,6 +4,7 @@ import cors from 'cors';
 import {connectToDataBase} from "./db/connectDB";
 import {AuthRouter} from "./routes/auth-router";
 import bodyParser from "body-parser";
+import {ChatRouter} from "./routes/chat-router";
 
 
 const app = express();
@@ -13,6 +14,7 @@ app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json())
 app.use(cors())
 app.use("/api/auth",AuthRouter)
+app.use("/api/chat",ChatRouter)
 
 
 app.get('/login', (req, res) => {
